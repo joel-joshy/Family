@@ -39,8 +39,7 @@ def send_email_with_callback_token(request, user, email_token, **kwargs):
     Passes silently without sending in test environment
     """
     try:
-        # import pdb;
-        # pdb.set_trace()
+
         user_email = [getattr(
             user, api_settings.PASSWORDLESS_USER_EMAIL_FIELD_NAME)]
         # if os.getenv('PROJECT_ENV') == 'PRODUCTION':
@@ -57,8 +56,7 @@ def send_email_with_callback_token(request, user, email_token, **kwargs):
                 'static_url': static_url
             }
         )
-        print("OTP: {otp}".format(otp=email_token.key))
-        # message.content_subtype = "html"
+        # print("OTP: {otp}".format(otp=email_token.key))
         send_mail(user_email, subject, message)
         return True
     except Exception as e:
@@ -76,7 +74,6 @@ def send_sms_with_callback_token(request, user, mobile_token, **kwargs):
     Sends a SMS to user.mobile via Twilio.
     Passes silently without sending in test environment.
     """
-    # import pdb; pdb.set_trace()
     # if api_settings.PASSWORDLESS_TEST_SUPPRESSION is True:
     #     # we assume success to prevent spamming SMS during testing.
     #
@@ -122,8 +119,6 @@ def send_sms_with_callback_token(request, user, mobile_token, **kwargs):
 class TokenService(object):
     @staticmethod
     def send_token(request, user, alias_type, token_type, **message_payload):
-        # import pdb;
-        # pdb.set_trace()
 
         token = create_callback_token_for_user(user, alias_type, token_type)
         send_action = None

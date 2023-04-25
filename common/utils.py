@@ -12,7 +12,6 @@ def get_queryset_for_current_site(model, request):
 
 
 def send_invitation_message(user):
-    import pdb; pdb.set_trace()
     body = 'Hi {name} ,\nYou have been added to {family} family ' \
            'Login to your family by clicking this link. \n' \
            '{subdomain}'.format(
