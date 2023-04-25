@@ -58,7 +58,6 @@ class CreateSubscriptionView(generics.GenericAPIView):
             payment_behavior='default_incomplete',
             expand=['latest_invoice.payment_intent']
         )
-        # import pdb; pdb.set_trace()
 
         return Response(data={
             'status': True
@@ -78,5 +77,5 @@ class StripeSubscriptionCreationWebhookView(APIView):
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
-        import pdb; pdb.set_trace()
+
         return Response(data={'TRUE'})
